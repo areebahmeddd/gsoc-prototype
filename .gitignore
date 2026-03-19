@@ -1,0 +1,27 @@
+# Dependencies
+node_modules/
+
+# WXT build output & generated types
+.output/
+.wxt/
+*.zip
+
+# Environment variables
+.env
+.env.*
+!.env.example
+
+# Logs
+npm-debug.log*
+pnpm-debug.log*
+
+# Editor
+.vscode/*
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+
+# OS
+.DS_Store
+Thumbs.db

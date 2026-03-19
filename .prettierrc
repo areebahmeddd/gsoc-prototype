@@ -1,0 +1,12 @@
+{
+  "printWidth": 80,
+  "tabWidth": 2,
+  "useTabs": false,
+  "semi": true,
+  "singleQuote": false,
+  "jsxSingleQuote": false,
+  "arrowParens": "always",
+  "endOfLine": "auto",
+  "tailwindFunctions": ["classNames"],
+  "plugins": ["prettier-plugin-tailwindcss", "prettier-plugin-organize-imports"]
+}
