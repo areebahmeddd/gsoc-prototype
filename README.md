@@ -1,7 +1,7 @@
 # OpenFoodFacts eStore
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
-[![Build](https://github.com/openfoodfacts/openfoodfacts-estore/actions/workflows/build.yaml/badge.svg)](https://github.com/openfoodfacts/openfoodfacts-estore/actions)
+[![Deploy](https://github.com/openfoodfacts/openfoodfacts-estore/actions/workflows/deploy.yaml/badge.svg)](https://github.com/openfoodfacts/openfoodfacts-estore/actions)
 
 Browser extension that surfaces Nutri-Score, Eco-Score, NOVA group, and front-of-package warnings directly on grocery store product pages - without leaving the store.
 
@@ -47,5 +47,5 @@ npm run zip:firefox
 
 - [Open Food Facts API v2](https://world.openfoodfacts.org/data)
 - [WXT](https://wxt.dev) - extension framework
-- React + TypeScript
+- React 19 + Typescript 5
 - Tailwind CSS v4

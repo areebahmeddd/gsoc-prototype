@@ -51,6 +51,10 @@ export function fopWarningUrl(key: FopWarningKey): string {
   return browser.runtime.getURL(`fop/fop-${key}.svg`);
 }
 
+export function fopUnknownUrl(): string {
+  return browser.runtime.getURL("fop/fop-unknown.svg");
+}
+
 /** Returns FOP (Front-of-Package) warnings for each nutrient whose level is "high". */
 export function resolveFopWarnings(product: OFFProduct): FopWarning[] {
   const levels = product.nutrient_levels;

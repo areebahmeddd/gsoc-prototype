@@ -30,7 +30,7 @@ export function FloatingApp({ config }: FloatingAppProps) {
   const { enabled, isReady } = useBannerSwitch(config.storageKey);
   const currentUrl = useCurrentUrl();
   const barcode = useBarcode(config, currentUrl);
-  const { data, loading } = useOFF(barcode);
+  const { data, status } = useOFF(barcode);
 
   useEffect(() => {
     buttonY.getValue().then((raw) => {
@@ -94,7 +94,7 @@ export function FloatingApp({ config }: FloatingAppProps) {
   if (!isReady || !enabled || !posReady) return null;
   if (!config.isProductPage()) return null;
 
-  const showHoverPreview = isHovered && !!barcode && !!data;
+  const showHoverPreview = isHovered && !!barcode && status === "done";
 
   return (
     <div
@@ -126,7 +126,7 @@ export function FloatingApp({ config }: FloatingAppProps) {
           onPointerMove={onPointerMove}
           onPointerUp={onPointerUp}
         >
-          <FloatingButton loading={!!barcode && loading && !data} />
+          <FloatingButton loading={status === "loading"} />
         </div>
       </div>
     </div>
