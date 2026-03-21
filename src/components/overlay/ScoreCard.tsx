@@ -151,7 +151,7 @@ export function ScoreCard({ product, barcode }: ScoreCardProps) {
               loading="eager"
             />
           </div>
-          <span style={label}>NOVA</span>
+          <span style={label}>Nova Group</span>
         </div>
 
         <div style={scoreItem}>

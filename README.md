@@ -43,9 +43,24 @@ npm run zip:chrome
 npm run zip:firefox
 ```
 
+## Testing
+
+```bash
+# Run all tests
+npm test
+
+# Run tests with coverage report
+npm run test:coverage
+```
+
+See [tests/README.md](tests/README.md) for full details on test structure and coverage.
+
 ## Stack
 
-- [Open Food Facts API v2](https://world.openfoodfacts.org/data)
-- [WXT](https://wxt.dev) - extension framework
-- React 19 + Typescript 5
-- Tailwind CSS v4
+| Package                                                     | Version | Purpose                                            |
+| ----------------------------------------------------------- | ------- | -------------------------------------------------- |
+| [Open Food Facts API](https://world.openfoodfacts.org/data) | v2      | Product nutrition and score data                   |
+| [WXT](https://wxt.dev)                                      | 0.20.x  | Browser extension framework (Chrome MV3 + Firefox) |
+| [React](https://react.dev)                                  | 19.x    | UI components and hooks                            |
+| [TypeScript](https://www.typescriptlang.org)                | 5.x     | Type-safe source                                   |
+| [Tailwind CSS](https://tailwindcss.com)                     | 4.x     | Utility-first styling                              |
