@@ -4,6 +4,10 @@ export const buttonY = storage.defineItem<number | null>("local:buttonY", {
   defaultValue: null,
 });
 
+export const darkMode = storage.defineItem<boolean>("local:darkMode", {
+  defaultValue: false,
+});
+
 export const storeToggles = {
   metro: storage.defineItem<boolean>("local:metro", { defaultValue: true }),
   superc: storage.defineItem<boolean>("local:superc", { defaultValue: true }),

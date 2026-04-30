@@ -6,6 +6,9 @@ node_modules/
 .wxt/
 *.zip
 
+# Test coverage
+coverage/
+
 # Environment variables
 .env
 .env.*

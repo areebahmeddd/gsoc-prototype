@@ -15,10 +15,9 @@ const FIELDS = [
   "nutriscore_grade",
   "nova_group",
   "ecoscore_grade",
-  "nutrient_levels",
+  "serving_quantity",
   "nutriments",
-  "image_small_url",
-  "image_url",
+  "categories_tags",
   "url",
 ].join(",");
 
@@ -27,7 +26,7 @@ function buildUserAgent(): string {
     const manifest = browser.runtime.getManifest();
     return `${navigator.userAgent} ${manifest.name}/${manifest.version}`;
   } catch {
-    return `${navigator.userAgent} openfoodfacts-estore/0.1.0`;
+    return `${navigator.userAgent} openfoodfacts-estore/0.5.0`;
   }
 }
 

@@ -10,9 +10,9 @@ export default defineConfig({
   }),
 
   manifest: {
-    name: "openfoodfacts-estore",
+    name: "OpenFoodFacts eStore",
     description: "Browser extension for OpenFoodFacts (Canada)",
-    version: "0.1.0",
+    version: "0.5.0",
     permissions: ["storage"],
     icons: {
       16: "icon/16.png",

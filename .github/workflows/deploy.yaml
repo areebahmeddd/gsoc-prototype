@@ -1,0 +1,30 @@
+name: Deploy Extension
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  deploy-chrome:
+    name: Deploy to Chrome Web Store
+    runs-on: ubuntu-24.04
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v6
+
+      - name: Publish Chrome Extension
+        run: 'echo "TODO: publish to Chrome Web Store"'
+
+  deploy-firefox:
+    name: Deploy to Firefox Add-ons
+    runs-on: ubuntu-24.04
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v6
+
+      - name: Publish Firefox Extension
+        run: 'echo "TODO: publish to Firefox Add-ons"'
