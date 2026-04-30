@@ -35,9 +35,9 @@ export function PopupStoreRow({
   const checked = disabledManually ? (enabledOverride ?? enabled) : enabled;
 
   return (
-    <div className="flex items-center gap-3 py-2 px-2 rounded-xl hover:bg-gray-50 transition-colors duration-150 border-b border-gray-100 last:border-0">
+    <div className="flex items-center gap-3 py-2 px-2 rounded-xl hover:bg-gray-50 dark:hover:bg-zinc-800 transition-colors duration-150 border-b border-gray-100 dark:border-zinc-800 last:border-0">
       {logoSrc ? (
-        <div className="w-9 h-9 shrink-0 flex items-center justify-center bg-white rounded-xl overflow-hidden p-1 border border-gray-100 shadow-sm">
+        <div className="w-9 h-9 shrink-0 flex items-center justify-center bg-white dark:bg-zinc-800 rounded-xl overflow-hidden p-1 border border-gray-100 dark:border-zinc-700 shadow-sm">
           <img
             src={logoSrc}
             alt={name}
@@ -52,7 +52,7 @@ export function PopupStoreRow({
             "w-9 h-9 shrink-0 rounded-xl flex items-center justify-center text-xs font-bold border shadow-sm",
             avatarColor
               ? "text-white border-transparent"
-              : "bg-gray-100 text-gray-500 border-gray-200",
+              : "bg-gray-100 dark:bg-zinc-700 text-gray-500 dark:text-zinc-400 border-gray-200 dark:border-zinc-600",
           ].join(" ")}
         >
           {avatarText ?? name.slice(0, 2).toUpperCase()}
@@ -60,21 +60,21 @@ export function PopupStoreRow({
       )}
 
       <div className="flex-1 min-w-0">
-        <p className="text-sm font-semibold text-gray-800 truncate leading-snug">
+        <p className="text-sm font-semibold text-gray-800 dark:text-zinc-100 truncate leading-snug">
           {name}
         </p>
         <a
           href={href}
           target="_blank"
           rel="noopener noreferrer"
-          className="text-xs text-green-600 hover:underline truncate block leading-snug"
+          className="text-xs text-[#f39200] hover:underline truncate block leading-snug"
         >
           {address}
         </a>
       </div>
 
       {disabledManually ? (
-        <span className="flex-shrink-0 text-[10px] font-bold uppercase tracking-widest text-gray-400 bg-gray-100 border border-gray-200 px-2 py-0.5 rounded-full">
+        <span className="flex-shrink-0 text-[10px] font-bold uppercase tracking-widest text-gray-400 dark:text-zinc-500 bg-gray-100 dark:bg-zinc-800 border border-gray-200 dark:border-zinc-700 px-2 py-0.5 rounded-full">
           Soon
         </span>
       ) : (
@@ -86,9 +86,9 @@ export function PopupStoreRow({
           onClick={() => setEnabled(!enabled)}
           className={[
             "relative inline-flex h-6 w-11 shrink-0 rounded-full transition-colors duration-200 cursor-pointer",
-            "focus:outline-none focus-visible:ring-2 focus-visible:ring-green-500 focus-visible:ring-offset-2",
+            "focus:outline-none focus-visible:ring-2 focus-visible:ring-[#f39200] focus-visible:ring-offset-2 dark:focus-visible:ring-offset-zinc-900",
             "disabled:opacity-40 disabled:cursor-not-allowed",
-            checked ? "bg-green-500" : "bg-gray-200",
+            checked ? "bg-[#f39200]" : "bg-gray-200 dark:bg-zinc-600",
           ].join(" ")}
         >
           <span

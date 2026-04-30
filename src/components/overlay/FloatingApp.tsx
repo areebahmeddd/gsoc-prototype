@@ -3,6 +3,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { useBannerSwitch } from "../../hooks/useBannerSwitch";
 import { useBarcode } from "../../hooks/useBarcode";
 import { useCurrentUrl } from "../../hooks/useCurrentUrl";
+import { useDarkMode } from "../../hooks/useDarkMode";
 import { useOFF } from "../../hooks/useOFF";
 import type { StoreConfig } from "../../retailers/configs/types";
 import { buttonY } from "../../retailers/storage";
@@ -19,6 +20,7 @@ interface FloatingAppProps {
 /** Overlay root component: a draggable floating button that shows a score preview card on hover. */
 export function FloatingApp({ config }: FloatingAppProps) {
   const [isHovered, setIsHovered] = useState(false);
+  const [isPinned, setIsPinned] = useState(false);
   const [posY, setPosY] = useState(0);
   const [posReady, setPosReady] = useState(false);
   const posYRef = useRef(0);
@@ -31,6 +33,7 @@ export function FloatingApp({ config }: FloatingAppProps) {
   const currentUrl = useCurrentUrl();
   const barcode = useBarcode(config, currentUrl);
   const { data, status } = useOFF(barcode);
+  const { isDark } = useDarkMode();
 
   useEffect(() => {
     buttonY.getValue().then((raw) => {
@@ -88,47 +91,72 @@ export function FloatingApp({ config }: FloatingAppProps) {
     isDragging.current = false;
     if (hasMoved.current) {
       buttonY.setValue(posYRef.current);
+    } else {
+      setIsPinned((prev) => !prev);
     }
   }, []);
+
+  useEffect(() => {
+    setIsPinned(false);
+    setIsHovered(false);
+  }, [currentUrl]);
 
   if (!isReady || !enabled || !posReady) return null;
   if (!config.isProductPage()) return null;
 
-  const showHoverPreview = isHovered && !!barcode && status === "done";
+  const showCard = (isHovered || isPinned) && !!barcode && status === "done";
 
   return (
-    <div
-      className="fixed right-0 z-[2147483647] pointer-events-none h-[52px] w-0"
-      style={{ top: posY }}
-    >
-      <div
-        className="pointer-events-auto absolute right-0 top-0"
-        onMouseEnter={handleMouseEnter}
-        onMouseLeave={handleMouseLeave}
-      >
-        {showHoverPreview && (
-          <div
-            style={{
-              position: "fixed",
-              top: posY + BTN_H + 8,
-              right: 0,
-              pointerEvents: "auto",
-            }}
-          >
-            <ScoreCard product={data} barcode={barcode} />
-          </div>
-        )}
-
+    <>
+      {isPinned && (
         <div
-          className="select-none touch-none"
-          style={{ cursor: "grab" }}
-          onPointerDown={onPointerDown}
-          onPointerMove={onPointerMove}
-          onPointerUp={onPointerUp}
+          aria-hidden="true"
+          style={{
+            position: "fixed",
+            inset: 0,
+            zIndex: 2147483645,
+          }}
+          onPointerDown={() => setIsPinned(false)}
+        />
+      )}
+      <div
+        className="fixed right-0 z-[2147483647] pointer-events-none h-[52px] w-0"
+        style={{ top: posY }}
+      >
+        <div
+          className="pointer-events-auto absolute right-0 top-0"
+          onMouseEnter={handleMouseEnter}
+          onMouseLeave={handleMouseLeave}
         >
-          <FloatingButton loading={status === "loading"} />
+          {showCard && (
+            <div
+              style={{
+                position: "fixed",
+                top: posY + BTN_H + 8,
+                right: 0,
+                zIndex: 2147483647,
+                pointerEvents: "auto",
+              }}
+            >
+              <ScoreCard product={data} barcode={barcode} isDark={isDark} />
+            </div>
+          )}
+
+          <div
+            className="select-none touch-none"
+            style={{ cursor: "grab" }}
+            onPointerDown={onPointerDown}
+            onPointerMove={onPointerMove}
+            onPointerUp={onPointerUp}
+          >
+            <FloatingButton
+              loading={status === "loading"}
+              pinned={isPinned}
+              isDark={isDark}
+            />
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 }

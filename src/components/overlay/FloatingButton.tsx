@@ -2,29 +2,54 @@ import { browser } from "#imports";
 
 interface FloatingButtonProps {
   loading: boolean;
+  pinned?: boolean;
+  isDark?: boolean;
 }
 
 /** Floating action button on the right viewport edge; shows a spinner while data loads. */
-export function FloatingButton({ loading }: FloatingButtonProps) {
+export function FloatingButton({
+  loading,
+  pinned = false,
+  isDark = false,
+}: FloatingButtonProps) {
+  const bg = pinned
+    ? isDark
+      ? "#052e0d"
+      : "#f0fdf4"
+    : isDark
+      ? "#18181b"
+      : "#ffffff";
+
+  const borderColor = pinned ? "#1a6b27" : "#289b38";
+
+  const shadow = pinned
+    ? isDark
+      ? "-4px 2px 20px rgba(40,155,56,0.18), -1px 1px 4px rgba(0,0,0,0.4)"
+      : "-4px 2px 20px rgba(40,155,56,0.22), -1px 1px 4px rgba(0,0,0,0.08)"
+    : isDark
+      ? "-4px 2px 16px rgba(0,0,0,0.55), -1px 1px 4px rgba(0,0,0,0.35)"
+      : "-4px 2px 16px rgba(0,0,0,0.14), -1px 1px 4px rgba(0,0,0,0.08)";
+
   return (
     <button
       aria-label="View nutrition scores"
+      aria-pressed={pinned}
       title="Open Food Facts"
       className="btn-animate focus-visible:ring-2 focus-visible:ring-green-500 focus-visible:ring-offset-2"
       style={{
         width: 68,
         height: 52,
         borderRadius: "12px 0 0 12px",
-        background: "#ffffff",
+        background: bg,
         border: "none",
-        borderLeft: "3px solid #289b38",
+        borderLeft: `3px solid ${borderColor}`,
         cursor: "pointer",
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
-        boxShadow:
-          "-4px 2px 16px rgba(0,0,0,0.14), -1px 1px 4px rgba(0,0,0,0.08)",
-        transition: "transform 150ms ease, box-shadow 150ms ease",
+        boxShadow: shadow,
+        transition:
+          "background 150ms ease, border-color 150ms ease, transform 150ms ease, box-shadow 150ms ease",
         outline: "none",
         padding: 0,
       }}

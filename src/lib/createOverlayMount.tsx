@@ -1,4 +1,5 @@
 import { createShadowRootUi, type ContentScriptContext } from "#imports";
+import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { FloatingApp } from "~/components/overlay/FloatingApp";
 import type { StoreConfig } from "~/retailers/configs/types";
@@ -16,7 +17,11 @@ export function createOverlayMount(config: StoreConfig, name: string) {
         const wrapper = document.createElement("div");
         container.append(wrapper);
         const root = createRoot(wrapper);
-        root.render(<FloatingApp config={config} />);
+        root.render(
+          <StrictMode>
+            <FloatingApp config={config} />
+          </StrictMode>,
+        );
         return root;
       },
 
